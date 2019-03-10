@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+message PhoneNumber
+{
+	Type type = 1;
+	string number = 2;
+
+	enum Type
+	{
+		PRIVATE = 0;
+		WORK = 1;
+	}
+}
+
+message Address
+{
+	string city = 1;
+	string country = 2;
+	repeated string detail = 3;
+}
+
+message Person
+{
+	Type type = 1;
+	string name = 2;
+	Address address = 3;
+	repeated PhoneNumber phone_number = 4;
+	map<string, Address> other_addresses = 5;
+	bytes blob = 6;
+	
+	oneof choice
+	{
+		double bool_choice = 7;
+		string string_choice = 8;
+		double double_choice = 9;
+		PhoneNumber secret_phone = 10;
+	}
+
+	enum Type
+	{
+		EMPLOYEE = 0;
+		CUSTOMER = 1;
+	}
+}
+
+
+
